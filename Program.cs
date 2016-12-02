@@ -133,6 +133,19 @@ namespace VenoPRO
                     }
             }
 
+            foreach (var plagueward in plaguewards)
+            {
+                if (plagueward.Team == me.Team && plagueward.Health > (PlagueWardDamage[plagueWardLevel] * 1) && plagueward.Health < (PlagueWardDamage[plagueWardLevel] * 1 + 88))
+                    foreach (var plagueward2 in plaguewards)
+                    {
+                        if (GetDistance2D(plagueward.Position, plagueward2.Position) < plagueward2.AttackRange && Utils.SleepCheck(plagueward2.Handle.ToString()))
+                        {
+                            plagueward2.Attack(plagueward);
+                            Utils.Sleep(1000, plagueward2.Handle.ToString());
+                        }
+                    }
+            }
+
             // For Combo
             if (!Game.IsInGame || me == null)
             {
