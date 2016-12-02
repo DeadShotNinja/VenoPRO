@@ -44,9 +44,9 @@ namespace VenoPRO
             };
             Menu.AddItem(new MenuItem("hotkey", "Hotkey").SetValue(new KeyBind('G', KeyBindType.Press)));
             Menu.AddItem(new MenuItem("Items", "Items:").SetValue(new AbilityToggler(dict)));
-            Menu.AddItem(new MenuItem("minHp", "Min Hp %").SetValue(new Slider(15)));
             Menu.AddItem(new MenuItem("LockTarget", "Lock Target").SetValue(true));
             Menu.AddItem(new MenuItem("panicUlt", "Panic Ultimate").SetValue(true));
+            Menu.AddItem(new MenuItem("minHp", "Min Hp %").SetValue(new Slider(15)));
 
             Menu.AddToMainMenu();
         }
@@ -75,28 +75,6 @@ namespace VenoPRO
                     "<font face='Comic Sans MS, cursive'><font color='#00aaff'>" + Menu.DisplayName + " By EditedMultiCode" +
                     " loaded!</font> <font color='#aa0000'>v" + Assembly.GetExecutingAssembly().GetName().Version, MessageType.LogMessage);
             }
-
-            // For Combo
-            if (!Game.IsInGame || me == null)
-            {
-                _loaded = false;
-                return;
-            }
-            if (!me.IsAlive || Game.IsPaused) return;
-
-            if (!Menu.Item("hotkey").GetValue<KeyBind>().Active)
-            {
-                _globalTarget = null;
-                return;
-            }
-
-            if (_globalTarget == null || !_globalTarget.IsValid || !Menu.Item("LockTarget").GetValue<bool>())
-            {
-                _globalTarget = ClosestToMouse(me, 300);
-            }
-            if (_globalTarget == null || !_globalTarget.IsValid || !_globalTarget.IsAlive || !me.CanCast()) return;
-
-            DoCombo(me, _globalTarget);
 
             // Veno ward controll
             if (!Game.IsInGame || !Utils.SleepCheck("VenoPRO"))
@@ -154,6 +132,28 @@ namespace VenoPRO
                         }
                     }
             }
+
+            // For Combo
+            if (!Game.IsInGame || me == null)
+            {
+                _loaded = false;
+                return;
+            }
+            if (!me.IsAlive || Game.IsPaused) return;
+
+            if (!Menu.Item("hotkey").GetValue<KeyBind>().Active)
+            {
+                _globalTarget = null;
+                return;
+            }
+
+            if (_globalTarget == null || !_globalTarget.IsValid || !Menu.Item("LockTarget").GetValue<bool>())
+            {
+                _globalTarget = ClosestToMouse(me, 300);
+            }
+            if (_globalTarget == null || !_globalTarget.IsValid || !_globalTarget.IsAlive || !me.CanCast()) return;
+
+            DoCombo(me, _globalTarget);
         }
 
         private static void DoCombo(Hero me, Hero target)
