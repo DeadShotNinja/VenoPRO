@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -46,6 +46,7 @@ namespace VenoPRO
             Menu.AddItem(new MenuItem("Items", "Items:").SetValue(new AbilityToggler(dict)));
             Menu.AddItem(new MenuItem("minHp", "Min Hp %").SetValue(new Slider(15)));
             Menu.AddItem(new MenuItem("LockTarget", "Lock Target").SetValue(true));
+            Menu.AddItem(new MenuItem("panicUlt", "Panic Ultimate").SetValue(true));
 
             Menu.AddToMainMenu();
         }
