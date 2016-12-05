@@ -389,7 +389,6 @@ namespace VenomancerPRO
             // Hurass Option
             if (enemies.Any() && harassKey.GetValue<KeyBind>().Active)
             {
-                Game.PrintMessage("HARASS KEY IS ON", MessageType.LogMessage);
                 foreach (var enemy in enemies)
                 {
                     if (enemy.Health > 0)
@@ -398,7 +397,6 @@ namespace VenomancerPRO
                         {
                             if (GetDistance2D(enemy.Position, plagueward.Position) < plagueward.AttackRange && Utils.SleepCheck(plagueward.Handle.ToString()))
                             {
-                                Game.PrintMessage("HURAS MODE", MessageType.LogMessage);
                                 plagueward.Attack(enemy);
                                 Utils.Sleep(1000, plagueward.Handle.ToString());
                             }
