@@ -16,6 +16,7 @@ namespace VenomancerPRO
             drawTarget = new MenuItem("drawTarget", "Target indicator").SetValue(true).SetTooltip("Shows red circle around your target.");
             moveMode = new MenuItem("moveMode", "Orbwalk").SetValue(true).SetTooltip("Will orbwalk to mouse while combo key is held down.");
             ClosestToMouseRange = new MenuItem("ClosestToMouseRange", "Closest to mouse range").SetValue(new Slider(600, 500, 1200)).SetTooltip("Will look for enemy in selected range around your mouse pointer.");
+            ultimateRadius = new MenuItem("ultimateRadius", "Ultimate Radius").SetValue(new Slider(700, 1, 830)).SetTooltip("Range of ultimate cast during combo.");
             nocastulti = new MenuItem("noCastUlti", "Ult will not be cast if % of enemy HP is under: ").SetValue(new Slider(25));
             denyAlly = new MenuItem("denyAlly", "Deny Allies").SetValue(false).SetTooltip("Will deny ally under denyable debuffs.");
 
@@ -39,6 +40,7 @@ namespace VenomancerPRO
             items.AddItem(soulRing);
             items.AddItem(bladeMail);
             abilities.AddItem(new MenuItem("abilities", "Abilities").SetValue(new AbilityToggler(abilitiesDictionary)));
+            abilities.AddItem(ultimateRadius);
             noCastUlti.AddItem(nocastulti);
             targetOptions.AddItem(moveMode);
             targetOptions.AddItem(ClosestToMouseRange);

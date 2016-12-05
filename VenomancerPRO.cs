@@ -246,7 +246,7 @@ namespace VenomancerPRO
             }
             else
             {
-                if (target.Distance2D(me.Position) < 700) //Nova radius is 830. EZ fix to prevent missing without blink.
+                if (target.Distance2D(me.Position) < ultimateRadius.GetValue<Slider>().Value) //Nova max radius is 830.
                 {
                     nova.UseAbility();
                 }

@@ -72,6 +72,8 @@ namespace VenomancerPRO
 
         public static MenuItem denyAlly;
 
+        public static MenuItem ultimateRadius;
+
         public static bool loaded, _loaded;
 
         public static Ability nova, ward, gale;
