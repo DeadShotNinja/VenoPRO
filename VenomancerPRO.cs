@@ -72,7 +72,7 @@ namespace VenomancerPRO
                 if (target == null || !target.IsValid || !target.IsVisible || target.IsIllusion || !target.IsAlive ||
                     me.IsChanneling() || target.IsInvul() || HasModifiers()) return;
 
-                    if (!Utils.SleepCheck("combosleep")) return;
+                    if (!Utils.SleepCheck("VenomancerPROcombosleep")) return;
 
                     Orbwalk();
                 
@@ -99,14 +99,14 @@ namespace VenomancerPRO
 
                     UseItem(shivas, shivas.GetCastRange());
 
-                    Utils.Sleep(150, "combosleep");
+                    Utils.Sleep(150, "VenomancerPROcombosleep");
                 
             }
         }
 
         private static void GetAbilities()
         {
-            if (!Utils.SleepCheck("GetAbilities")) return;
+            if (!Utils.SleepCheck("VenomancerPROGetAbilities")) return;
             blink = me.FindItem("item_blink");
             soulring = me.FindItem("item_soul_ring");
             medal = me.FindItem("item_medallion_of_courage");
@@ -123,16 +123,16 @@ namespace VenomancerPRO
             gale = me.FindSpell("venomancer_venomous_gale");
             ward = me.FindSpell("venomancer_plague_ward");
             nova = me.FindSpell("venomancer_poison_nova");
-            Utils.Sleep(1000, "GetAbilities");
+            Utils.Sleep(1000, "VenomancerPROGetAbilities");
         }
 
         private static bool HasModifiers()
         {
             if (target.HasModifiers(modifiersNames, false) ||
                 (bladeMail.GetValue<bool>() && target.HasModifier("modifier_item_blade_mail_reflect")) ||
-                !Utils.SleepCheck("HasModifiers"))
+                !Utils.SleepCheck("VenomancerPROHasModifiers"))
                 return true;
-            Utils.Sleep(100, "HasModifiers");
+            Utils.Sleep(100, "VenomancerPROHasModifiers");
             return false;
         }
 
@@ -239,8 +239,8 @@ namespace VenomancerPRO
                 || target.IsMagicImmune()
                 || !IsFullDebuffed()
                 || target.Health * 100 / target.MaximumHealth < Menu.Item("noCastUlti").GetValue<Slider>().Value
-                || !Utils.SleepCheck("ebsleep")
-                || !Utils.SleepCheck("slowsleep"))
+                || !Utils.SleepCheck("VenomancerPROebsleep")
+                || !Utils.SleepCheck("VenomancerPROslowsleep"))
             {
                 return;
             }
@@ -261,7 +261,7 @@ namespace VenomancerPRO
                 || !(target.NetworkPosition.Distance2D(me) - target.RingRadius <= dagon.CastRange)
                 || !Menu.Item("items").GetValue<AbilityToggler>().IsEnabled("item_dagon")
                 || !IsFullDebuffed()
-                || !Utils.SleepCheck("ebsleep")) return;
+                || !Utils.SleepCheck("VenomancerPROebsleep")) return;
             dagon.UseAbility(target);
         }
 
@@ -275,7 +275,7 @@ namespace VenomancerPRO
             if (item.Name.Contains("ethereal") && IsFullDebuffed())
             {
                 item.UseAbility(target);
-                Utils.Sleep(me.NetworkPosition.Distance2D(target.NetworkPosition) / 1200 * 1000, "ebsleep");
+                Utils.Sleep(me.NetworkPosition.Distance2D(target.NetworkPosition) / 1200 * 1000, "VenomancerPROebsleep");
                 return;
             }
 
@@ -349,17 +349,17 @@ namespace VenomancerPRO
             }
 
             blink.UseAbility(predictXYZ);
-            Utils.Sleep(500, "blink");
+            Utils.Sleep(500, "VenomancerPROblink");
         }
 
         private static void WardsControl(EventArgs args)
         {
-            if (!Game.IsInGame || !Utils.SleepCheck("Veno"))
+            if (!Game.IsInGame || !Utils.SleepCheck("VenomancerPROVeno"))
             {
                 return;                
             }
 
-            Utils.Sleep(125, "Veno");
+            Utils.Sleep(125, "VenomancerPROVeno");
 
             var me = ObjectManager.LocalHero;
 
